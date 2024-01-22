@@ -1,0 +1,88 @@
+// Import Bootstrap for base styling
+@import '~bootstrap/scss/bootstrap';
+
+// Define your "dusty blue" color palette
+$dusty-blue: #5a7d7c;
+$dusty-blue-light: #8ba6a9;
+$dusty-blue-dark: #3b5a59;
+$white: #ffffff;
+$grey: #f8f9fa;
+
+// Basic body styling
+body {
+  background-color: $grey;
+  color: $dusty-blue-dark;
+  font-family: 'Arial', sans-serif; // Use your preferred font
+}
+
+// Global container style
+.container-custom {
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 960px; // Adjust based on your layout preference
+}
+
+// Transaction History component styling
+.transaction-history-container {
+  background-color: $white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+
+  h2 {
+    color: $dusty-blue;
+  }
+
+  table {
+    th, td {
+      color: $dusty-blue-dark;
+    }
+  }
+}
+
+// Balance Chart component styling
+.balance-chart-container {
+  background-color: $white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+
+  h2 {
+    color: $dusty-blue;
+  }
+
+  // Additional chart styling...
+}
+
+// Transaction Form component styling
+.transaction-form-container {
+  background-color: $white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+
+  h2 {
+    color: $dusty-blue;
+  }
+
+  button {
+    background-color: $dusty-blue;
+    color: $white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $dusty-blue-dark;
+    }
+  }
+
+  input, select {
+    margin-bottom: 1rem;
+  }
+
+  // Additional form styling...
+}
