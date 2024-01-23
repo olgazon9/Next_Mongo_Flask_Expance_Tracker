@@ -1,10 +1,12 @@
-// components/BalanceChart.tsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
+import io from 'socket.io-client';
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
+
+const socket = io('http://localhost:5000');
 
 const BalanceChart = () => {
   const [chartData, setChartData] = useState({
@@ -20,20 +22,29 @@ const BalanceChart = () => {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:5000/transactions')
-      .then(response => {
-        const processedData = processChartData(response.data);
-        setChartData(processedData);
-      })
-      .catch(error => console.error('Error fetching transactions:', error));
+    const fetchData = () => {
+      axios.get('http://localhost:5000/transactions')
+        .then(response => {
+          const processedData = processChartData(response.data);
+          setChartData(processedData);
+        })
+        .catch(error => console.error('Error fetching transactions:', error));
+    };
+
+    fetchData();
+
+    socket.on('update_balance', fetchData);
+
+    return () => {
+      socket.off('update_balance');
+    };
   }, []);
 
-  const processChartData = (transactions: any[]) => {
+  const processChartData = (transactions) => {
     let balance = 0;
-    const labels: string[] = [];
-    const data: number[] = [];
+    const labels = [];
+    const data = [];
 
-    // Ensure transactions are sorted by date
     transactions.sort((a, b) => new Date(a.date) - new Date(b.date));
 
     transactions.forEach(transaction => {
@@ -51,7 +62,7 @@ const BalanceChart = () => {
   const options = {
     scales: {
       y: {
-        beginAtZero: false, // Start from the lowest value in your data
+        beginAtZero: false,
         title: {
           display: true,
           text: 'Dollars ($)'
