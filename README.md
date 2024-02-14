@@ -1,4 +1,4 @@
-# Expense Tracker Application
+a# Expense Tracker Application
 
 This is a simple Expense Tracker application built using Next.js, Flask, and MongoDB.
 
@@ -12,6 +12,7 @@ git clone https://github.com/olgazon9/Next_Mongo_Flask_Expance_Tracker.git
 
 # Navigate to the project directory
 cd Next_Mongo_Flask_Expance_Tracker
+cd Back
 
 # Create a virtual environment (optional but recommended)
 python -m venv venv
@@ -26,7 +27,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # Install the JavaScript dependencies
-cd frontend
+cd front
 npm install
 ## Usage
 
@@ -37,5 +38,5 @@ Once you have successfully installed the Expense Tracker application, you can ru
 python run.py
 
 # Start the Next.js Frontend
-cd frontend
+cd front
 npm run dev
